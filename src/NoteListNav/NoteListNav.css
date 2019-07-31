@@ -1,0 +1,19 @@
+.NoteList__nav-btn button {
+    padding: 10px; 
+    margin: 10px;
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.NoteList__nav-btn button:hover {
+    cursor: pointer;
+    background: var(--links);
+    color: black;
+}
+
+.NoteList__nav-btn .NoteListNav__active button {
+    background: var(--links);
+    color: black;
+}

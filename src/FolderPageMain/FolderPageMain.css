@@ -1,0 +1,13 @@
+.FolderPageMain__delete-btn {
+    margin-bottom: 10px; 
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.FolderPageMain__delete-btn:hover {
+    background-color: red;
+    border: 1px solid red;
+    color: white;
+}

@@ -1,0 +1,42 @@
+.NotePageMain__display {
+    width: 80%;
+    border: 2px solid var(--border-md-green);
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+.NotePageMain__display p {
+    line-height: 1.5rem;
+}
+
+.NotePageMain__mod_date {
+    background-color: black;
+    width: 10%;
+    margin: 0 auto;
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.NotePageMain__display button {
+    width: 10%;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid var(--links);
+    margin-top: 2%;
+}
+
+.NotePageMain__display button:hover {
+    cursor: pointer;
+    background: var(--border-md-green);
+    font-weight: 700;
+    color: white;
+}
+
+.NotePageMain__delete-btn:hover {
+    background: red;
+    color: white;
+}
+
+
