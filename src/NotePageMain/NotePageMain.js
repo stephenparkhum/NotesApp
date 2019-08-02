@@ -1,31 +1,79 @@
-import React from 'react';
+import React, { Component } from 'react';
+import FoldersContext from '../FoldersContext';
 import {Link} from 'react-router-dom';
 import {format} from 'date-fns';
 import './NotePageMain.css';
 
-export default function NotePageMain(props) {
-    const displayActiveNote = (props) => {
-        if (props.notes !== undefined) {
-           for (let i = 0; i < props.notes.length; i++) {
-               if (props.notes[i].id === props.noteId) {
-                   return (
-                       <div className="NotePageMain__display">
-                        <h1>{props.notes[i].name}</h1>
-                       <p>{props.notes[i].content}</p>
-                       <p className="NotePageMain__mod_date"><small>{format(props.notes[i].modified, 'Do MMM YYYY')}</small></p>
-                       <Link to='/'><button className="back_button">{`< Back`}</button></Link>                       
-                       <button className="NotePageMain__delete-btn">DELETE</button>
-                       </div>
-                       
-                   )
-               }
-           }
+class NotePageMain extends Component {
+    static defaultProps ={
+        onDeleteNote: () => {},
+        match: {
+            params: {}
         }
     }
 
-    return (
-        <>
-        {displayActiveNote(props)}
-        </>
-    )
+    static contextType = FoldersContext
+
+    handleClickDelete = e => {
+        e.preventDefault()
+        const noteId = this.props.note
+    
+        fetch(`http://localhost:9090/notes/${noteId}`, {
+          method: 'DELETE',
+          headers: {
+            'content-type': 'application/json'
+          },
+        })
+          .then(res => {
+            if (!res.ok)
+              return res.json().then(e => Promise.reject(e))
+            return res.json()
+          })
+          .then(() => {
+            this.context.deleteNote(noteId)
+            this.handleDeleteNote(noteId)
+          })
+          .catch(error => {
+            console.error({ error })
+          })
+      }
+
+      handleDeleteNote = noteId => {
+        this.props.history.push(`/`)
+    }
+
+    render() { 
+        const displayActiveNote = (notes) => {
+            const noteId = this.props.note;
+            if (notes.notes !== undefined) {
+               for (let i = 0; i < notes.notes.length; i++) {
+                   if (notes.notes[i].id === noteId) {
+                       return (
+                           <div className="NotePageMain__display">
+                            <h1>{notes.notes[i].name}</h1>
+                           <p>{notes.notes[i].content}</p>
+                           <p className="NotePageMain__mod_date"><small>{format(notes.notes[i].modified, 'Do MMM YYYY')}</small></p>
+                           <Link to='/'><button className="back_button">{`< Back`}</button></Link>                       
+                           <button className="NotePageMain__delete-btn" onClick={this.handleClickDelete}>DELETE</button>
+                           </div>
+                           
+                       )
+                   }
+               }
+            }
+        }
+
+        return ( 
+            <FoldersContext.Consumer>
+                {(value) => {
+                    return (
+                        displayActiveNote(value)
+                    )
+                    
+                }}
+            </FoldersContext.Consumer>
+         );
+    }
 }
+ 
+export default NotePageMain;

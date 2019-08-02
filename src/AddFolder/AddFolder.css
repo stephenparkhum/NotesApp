@@ -1,0 +1,50 @@
+.add-folder-btn {
+    background-color: beige;
+    color: black;
+    font-weight: bold;
+}
+
+.AddFolder_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 50%;
+    margin: 50px auto;
+}
+
+.AddFolder_form label {
+    font-size: 25px;
+    padding-bottom: 5px;
+    text-align: left;
+    border: 1px solid var(--lt-green);
+    margin-top: 20px;
+}
+
+.AddFolder_form input[type="text"] {
+    width: 50%;
+    padding: 5px;
+    height: 20px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.AddFolder_form textarea {
+    width: 85%;
+    font-size: 20px;
+}
+
+.AddFolder_form select {
+    width: 20%;
+}
+
+.AddFolder_form input[type="submit"] {
+    height: 5%;
+    width: 200px;
+    padding: 10px;
+    font-size: 25px;
+    margin-top: 25px;
+}
+
+.AddFolder_form option {
+    font-size: 25px;
+}

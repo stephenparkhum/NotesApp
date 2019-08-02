@@ -6,9 +6,10 @@ import NoteListNav from './/NoteListNav/NoteListNav';
 import NotePageNav from './NotePageNav/NotePageNav';
 import NotePageMain from './NotePageMain/NotePageMain';
 import NoteListMain from './NoteListMain/NoteListMain';
-// import dummyStore from './dummy-store';
 import FolderPageMain from './FolderPageMain/FolderPageMain';
 import FoldersContext from './FoldersContext';
+import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
 
 class App extends Component {
   static contextType = FoldersContext;
@@ -36,10 +37,11 @@ class App extends Component {
     })
       .then(response => response.json())
       .then((data) => {this.setState({notes: data})});
-  }
+  } 
   
   displayNavigation() {
-    const {notes, folders, folderPaths} = this.state;
+    const {folderPaths} = this.state;
+    const {notes, folders} = this.context;
     return (
       <>
         {
@@ -47,13 +49,7 @@ class App extends Component {
             <Route 
               key={path}
               path={path}
-              render={routeProps => (
-                <NoteListNav 
-                  folders={folders}
-                  notes={notes}
-                  {...routeProps}
-                />
-              )}
+              component={NoteListNav}
             />
           ))}
           <Route 
@@ -65,14 +61,15 @@ class App extends Component {
               return <NotePageNav {...routeProps} folder={folder} />
             }}
           />
-          <Route path='/add-folder' component={NotePageNav} />
-          <Route path='/add-note' component={NotePageNav} />
+          <Route path='/add-folder' component={AddFolder} />
+          <Route path='/add-note' component={AddNote} />
       </>
     )
   }
 
   displayMain() {
-    const {notes, folders, folderPaths} = this.state;
+    const {folderPaths} = this.state;
+    const {notes, folders} = this.context;
     return (
       <>
         {folderPaths.map(path => (
@@ -80,17 +77,7 @@ class App extends Component {
             exact
             key={path}
             path={path}
-            render={routeProps => {
-              const {folderId} = routeProps.match.params;
-              const notesForFolder = notes;
-              return (
-                <NoteListMain 
-                    {...routeProps}
-                    notes={notes}
-                />
-              )
-            }}
-
+            component={NoteListMain}
           />
         ))}
         <Route 
@@ -113,17 +100,35 @@ class App extends Component {
     )
   }
 
+  handleDeleteNote = noteId => {
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== noteId)
+    })
+  } 
+
   render() { 
+
+    const contextValue = {
+      folders: this.state.folders,
+      notes: this.state.notes,
+      deleteNote: this.handleDeleteNote
+    }
+
+    
 
 
     return ( 
+      <FoldersContext.Provider value={contextValue}>
       <div className="App">
         <Header />
-        <main>
-            {this.displayMain()}
-        </main>
-        <nav>{this.displayNavigation()}</nav>
-      </div>
+          <main>
+              {this.displayMain()}
+          </main>
+          <nav>{this.displayNavigation()}</nav>
+          </div>
+      </FoldersContext.Provider>
+        
+     
      );
   }
 }
