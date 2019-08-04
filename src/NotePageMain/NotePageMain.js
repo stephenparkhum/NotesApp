@@ -6,7 +6,7 @@ import './NotePageMain.css';
 import PropTypes from 'prop-types';
 
 class NotePageMain extends Component {
-    static defaultProps ={
+    static defaultProps = {
         onDeleteNote: () => {},
         match: {
             params: {}
@@ -41,7 +41,7 @@ class NotePageMain extends Component {
 
       handleDeleteNote = noteId => {
         this.props.history.push(`/`)
-    }
+      }
 
     render() { 
         const displayActiveNote = (notes) => {

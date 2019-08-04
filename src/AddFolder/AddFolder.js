@@ -15,19 +15,9 @@ class AddFolder extends Component {
         this.setState({newFolderName: name, touched: true});
     }
 
-    getNewFolderId(event, value) {
-        for (let i = 0; i < value.folders.length; i++) {
-            if (value.folders[i].name === event.tartget.value) {
-                return (
-                   value.folders[i].id
-                );
-            }
-        }
-    }
-
     handleFolderSubmit(event, newFolderName) {
         event.preventDefault();
-        return {name: newFolderName, };
+        return {name: newFolderName};
     }
 
     validateFolderName() {

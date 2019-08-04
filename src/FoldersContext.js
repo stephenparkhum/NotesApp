@@ -6,7 +6,9 @@ const FoldersContext = React.createContext({
     routeProps: {},
     deleteNote: () => {},
     addFolder: () => {},
-    addNote: () => {}
+    addNote: () => {},
+    addFolderRoute: () => {},
+    addNoteRoute: () => {}
 });
 
 export default FoldersContext;

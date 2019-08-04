@@ -21,10 +21,6 @@ class App extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   setTimeout(() => this.setState({folders: dummyStore.folders, notes: dummyStore.notes}), 500);
-  // }
-
   componentDidMount() {
     fetch('http://localhost:9090/folders', {
       method: 'GET'
@@ -97,8 +93,15 @@ class App extends Component {
             folderId={folderId}/>
         }}
         />
-        <Route path='/add-folder' component={AddFolder} />
-        <Route path='/add-note' component={AddNote} />
+        <Route 
+          path='/add-folder' 
+          render={routeProps => {
+            return <AddFolder {...routeProps} />
+          }}
+        />
+        <Route 
+          path='/add-note' 
+          component={AddNote} />
 
 
       </>
@@ -110,6 +113,10 @@ class App extends Component {
       notes: this.state.notes.filter(note => note.id !== noteId)
     })
   } 
+
+  routeAddFolder = (props) => {
+    props.history.push('/')
+  }
 
   addFolder = (folderName) => {
     const newData = [];
@@ -123,7 +130,8 @@ class App extends Component {
       body: JSON.stringify(newData[0].name),
     })
     .then(response => (response.json()))
-    .then(this.props.history.goBack())
+    .then(data => this.routeAddFolder())
+
   }
 
   addNote = (noteName, noteContent, noteFolder) => {
@@ -149,7 +157,8 @@ class App extends Component {
       deleteNote: this.handleDeleteNote, 
       addFolder: this.addFolder,
       addNote: this.addNote,
-      routeProps: []
+      addFolderRoute: this.routeAddFolder,
+      addNoteRoute: this.routeAddFolder,
     }
 
     return ( 
