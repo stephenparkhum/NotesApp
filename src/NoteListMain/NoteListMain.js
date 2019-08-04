@@ -43,11 +43,3 @@ class NoteListMain extends Component {
 }
  
 export default NoteListMain;
-
-// export default function NoteListMain(this.context) {
-    
-
-//     return (
-        
-//     )
-// }
