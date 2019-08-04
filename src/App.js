@@ -130,7 +130,6 @@ class App extends Component {
       body: JSON.stringify(newData[0].name),
     })
     .then(response => (response.json()))
-    .then(data => this.routeAddFolder())
 
   }
 
@@ -146,7 +145,6 @@ class App extends Component {
       body: JSON.stringify(newData[0].name, newData[0].noteContent, newData[0].folderId),
     })
     .then(response => response.json())
-    .then((data) => console.log(data))
   }
 
   render() { 
