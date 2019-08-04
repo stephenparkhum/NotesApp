@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import './NoteListNav.css';
 import FoldersContext from '../FoldersContext';
-import AddFolder from '../AddFolder/AddFolder';
-import AddNote from '../AddNote/AddNote';
 
 class NoteListNav extends Component {
     static contextType = FoldersContext

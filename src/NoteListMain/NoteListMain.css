@@ -1,6 +1,6 @@
 .NoteList__main {
     width: 80%;
-    border: 2px solid black;
+    border: 2px solid var(--links);
     border-radius: 10px;
     margin: 0 auto;
     padding: 25px;
@@ -10,5 +10,5 @@
 
 .NoteList__note {
     text-align: left;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--border-md-green);
 }

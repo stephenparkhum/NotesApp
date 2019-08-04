@@ -3,9 +3,18 @@ import {Link} from 'react-router-dom';
 import {format} from 'date-fns';
 import './FolderPageMain.css';
 import FoldersContext from '../FoldersContext';    
+import PropTypes from 'prop-types';
 
 class FolderPageMain extends Component {
+    static defaultProps ={
+        onDeleteNote: () => {},
+        match: {
+            params: {}
+        }
+    }
+
     static contextType = FoldersContext
+
     render() { 
         const displayFolderNotes = (value) => {
             const folderId = this.props.folderId;
@@ -15,12 +24,11 @@ class FolderPageMain extends Component {
                         {value.notes.map((note) => {
                             if (note.folderId === folderId) {
                                 return (
-                                    <div className="NoteList__note">
+                                    <div className="NoteList__note" key={note.id + '_div'}>
                                     <Link to={`/note/${note.id}`}>
                                         <h2 key={note.id + '_h2'}>{note.name}</h2>
                                     </Link>
                                         <p key={note.id + '_p'}><small>{format(note.modified,' Do MMM YYYY')}</small></p>
-                                        <button className="FolderPageMain__delete-btn">DELETE</button>    
                                     </div>
                                     )
                             }
@@ -42,6 +50,13 @@ class FolderPageMain extends Component {
             </FoldersContext.Consumer>
             );
     }
+}
+
+FolderPageMain.propTypes = {
+    folders: PropTypes.array,
+    notes: PropTypes.array,
+    noteId: PropTypes.string,
+    folderId: PropTypes.string
 }
     
 export default FolderPageMain;

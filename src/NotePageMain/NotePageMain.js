@@ -3,6 +3,7 @@ import FoldersContext from '../FoldersContext';
 import {Link} from 'react-router-dom';
 import {format} from 'date-fns';
 import './NotePageMain.css';
+import PropTypes from 'prop-types';
 
 class NotePageMain extends Component {
     static defaultProps ={
@@ -16,7 +17,7 @@ class NotePageMain extends Component {
 
     handleClickDelete = e => {
         e.preventDefault()
-        const noteId = this.props.note
+        const noteId = this.props.match.params.noteId
     
         fetch(`http://localhost:9090/notes/${noteId}`, {
           method: 'DELETE',
@@ -54,7 +55,7 @@ class NotePageMain extends Component {
                            <p>{notes.notes[i].content}</p>
                            <p className="NotePageMain__mod_date"><small>{format(notes.notes[i].modified, 'Do MMM YYYY')}</small></p>
                            <Link to='/'><button className="back_button">{`< Back`}</button></Link>                       
-                           <button className="NotePageMain__delete-btn" onClick={this.handleClickDelete}>DELETE</button>
+                           <button className="NotePageMain__delete-btn" onClick={this.handleClickDelete}><i className="fas fa-trash"></i></button>
                            </div>
                            
                        )
@@ -74,6 +75,12 @@ class NotePageMain extends Component {
             </FoldersContext.Consumer>
          );
     }
+}
+
+NotePageMain.propTypes = {
+  note: PropTypes.string,
+  noteId: PropTypes.string,
+  notes: PropTypes.array,
 }
  
 export default NotePageMain;

@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const FoldersContext = React.createContext({
     folders: [],
     notes: [],
-    deteleFolder: () => {},
-    deleteNote: () => {}
+    routeProps: {},
+    deleteNote: () => {},
+    addFolder: () => {},
+    addNote: () => {}
 });
 
 export default FoldersContext;
