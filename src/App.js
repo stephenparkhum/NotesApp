@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route} from 'react-router-dom';
+import { Route} from 'react-router-dom';
 import './App.css';
 import Header from './/Header/Header';
 import NoteListNav from './/NoteListNav/NoteListNav';
@@ -95,9 +95,7 @@ class App extends Component {
         />
         <Route 
           path='/add-folder' 
-          render={routeProps => {
-            return <AddFolder {...routeProps} />
-          }}
+          component={AddFolder}
         />
         <Route 
           path='/add-note' 
@@ -160,7 +158,6 @@ class App extends Component {
     }
 
     return ( 
-      <BrowserRouter>
       <FoldersContext.Provider value={contextValue}>
       <div className="App">
         <Header />
@@ -170,7 +167,6 @@ class App extends Component {
           <nav>{this.displayNavigation()}</nav>
           </div>
       </FoldersContext.Provider>
-      </BrowserRouter>
         
      
      );

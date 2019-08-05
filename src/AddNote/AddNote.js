@@ -72,7 +72,6 @@ class AddNote extends Component {
                     value.folders.map((option) => (
                         <>  
                             <option key={option.id}>{option.name}</option>
-    
                         </>
                     ))
                 )
@@ -95,6 +94,8 @@ class AddNote extends Component {
                             name="note-title" 
                             id="note-title" 
                             placeholder="Note Title"
+                            aria-label="New Note Title"
+                            aria-required="true"
                             onChange={e => this.updateNoteName(e.target.value)}
                             />
                         {this.state.noteNameTouched && (
@@ -106,6 +107,8 @@ class AddNote extends Component {
                             cols="50" 
                             name="note-content" 
                             id="note-content"
+                            aria-label="New Note Content"
+                            aria-required="true"
                             onChange={e => this.updateNoteContent(e.target.value)}></textarea>
                         {this.state.noteContentTouched && (
                             <NoteValidation message={this.validateNoteContent()}/>
