@@ -76,21 +76,21 @@ class App extends Component {
           path="/note/:noteId"
           render={routeProps => {
             const {noteId} = routeProps.match.params;
-            return <NotePageMain {...routeProps} 
+            return (<NotePageMain {...routeProps} 
             note={routeProps.match.params.noteId} 
             noteId={noteId} 
-            notes={notes}/>;
+            notes={notes}/>)
           }}
           />
         <Route 
           path={'/folder/:folderId'}
           render={routeProps => {
             const {folderId} = routeProps.match.params;
-            return <FolderPageMain {...routeProps} 
+            return (<FolderPageMain {...routeProps} 
             folders={folders} 
             notes={notes} 
             noteId={folderId.noteId} 
-            folderId={folderId}/>
+            folderId={folderId}/>)
         }}
         />
         <Route 
