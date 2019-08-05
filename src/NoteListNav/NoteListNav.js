@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import {BrowserRouter, NavLink} from 'react-router-dom';
 import './NoteListNav.css';
 import FoldersContext from '../FoldersContext';
 
@@ -19,6 +19,7 @@ class NoteListNav extends Component {
             }
         };
         return ( 
+            <BrowserRouter>
             <FoldersContext.Consumer>
                 {(value) => {
                     return (
@@ -38,6 +39,7 @@ class NoteListNav extends Component {
                 }}
         
         </FoldersContext.Consumer>
+        </BrowserRouter>
          );
     }
 }
