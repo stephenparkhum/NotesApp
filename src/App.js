@@ -21,7 +21,7 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
+  getNotesAndFolder() {
     fetch('http://localhost:9090/folders', {
       method: 'GET'
     })
@@ -32,7 +32,11 @@ class App extends Component {
       method: 'GET'
     })
       .then(response => response.json())
-      .then((data) => {this.setState({notes: data})});
+      .then((data) => {this.setState({notes: data});});
+  }
+
+  componentDidMount() {
+    this.getNotesAndFolder();
   } 
   
   displayNavigation() {
@@ -119,6 +123,7 @@ class App extends Component {
       body: JSON.stringify(newData[0].name),
     })
     .then(response => (response.json()))
+    .then(data => this.getNotesAndFolder())
   }
 
   addNote = (noteName, noteContent, noteFolder) => {
@@ -133,7 +138,7 @@ class App extends Component {
       body: JSON.stringify(newData[0].name, newData[0].noteContent, newData[0].folderId),
     })
     .then(response => response.json())
-    .then((data) => console.log(data))
+    .then(data => this.getNotesAndFolder())
   }
 
   render() { 
