@@ -21,10 +21,6 @@ class App extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   setTimeout(() => this.setState({folders: dummyStore.folders, notes: dummyStore.notes}), 500);
-  // }
-
   componentDidMount() {
     fetch('http://localhost:9090/folders', {
       method: 'GET'
@@ -123,7 +119,6 @@ class App extends Component {
       body: JSON.stringify(newData[0].name),
     })
     .then(response => (response.json()))
-    .then(this.props.history.goBack())
   }
 
   addNote = (noteName, noteContent, noteFolder) => {
@@ -149,7 +144,6 @@ class App extends Component {
       deleteNote: this.handleDeleteNote, 
       addFolder: this.addFolder,
       addNote: this.addNote,
-      routeProps: []
     }
 
     return ( 

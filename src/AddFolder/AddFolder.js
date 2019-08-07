@@ -8,7 +8,8 @@ class AddFolder extends Component {
 
     state = {
         newFolderName: '',
-        touched: false
+        touched: false, 
+        submitted: false,
     }
 
     updateFolderName(name) {
@@ -27,7 +28,7 @@ class AddFolder extends Component {
 
     handleFolderSubmit(event, newFolderName) {
         event.preventDefault();
-        return {name: newFolderName, };
+        return {name: newFolderName};
     }
 
     validateFolderName() {
@@ -37,6 +38,11 @@ class AddFolder extends Component {
         } else if (name.length < 6 || name.length > 100) {
             return 'Folder name must be between 6 and 100 characters';
     }}
+
+    confirmSubmit() {
+        const name = this.state.newFolderName.trim();
+        return (`${name} has been created!`);
+    }
 
     render() { 
 
@@ -49,7 +55,10 @@ class AddFolder extends Component {
                     <>
                     <form 
                         className="AddFolder_form"
-                        onSubmit={(e) => value.addFolder(this.handleFolderSubmit(e, newFolderName))}>
+                        onSubmit={(e) => 
+                            {if (this.state.touched) 
+                                {value.addFolder(this.handleFolderSubmit(e, newFolderName)) && this.confirmSubmit()}}}
+                            >
                         <label htmlFor="folderTitle">Folder Name</label>
                         <input 
                             type="text" 
@@ -62,6 +71,9 @@ class AddFolder extends Component {
                             <FolderValidation message={this.validateFolderName()}/>
                         )}
                         <input type="submit" value="Save Folder"/>
+                        {this.state.submitted && (
+                            <FolderValidation message={this.confirmSubmit()}/>
+                        )}
                     </form>
                     </>
                 )
