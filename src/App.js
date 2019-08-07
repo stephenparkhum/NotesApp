@@ -97,8 +97,16 @@ class App extends Component {
             folderId={folderId}/>)
         }}
         />
-        <Route path='/add-folder' component={AddFolder} />
-        <Route path='/add-note' component={AddNote} />
+        <Route 
+          path='/add-folder' 
+          render={({history}) => {
+            return <AddFolder history={history}/>
+          }} />
+        <Route 
+          path='/add-note' 
+          render={({history}) => {
+            return <AddNote history={history}/>
+          }} />
 
 
       </>

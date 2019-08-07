@@ -5,6 +5,7 @@ import FoldersContext from '../FoldersContext';
 
 class NoteListNav extends Component {
     static contextType = FoldersContext
+
     render() { 
         const displayFolders = (folders) => {
             if (folders !== undefined) {

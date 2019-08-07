@@ -28,7 +28,7 @@ class AddFolder extends Component {
 
     handleFolderSubmit(event, newFolderName) {
         event.preventDefault();
-        return {name: newFolderName};
+        return ({name: newFolderName});
     }
 
     validateFolderName() {
@@ -44,6 +44,10 @@ class AddFolder extends Component {
         return (`${name} has been created!`);
     }
 
+    cancelButton() {
+        return (this.props.history.push('/'));
+    }
+
     render() { 
 
         const {newFolderName} = this.state;
@@ -57,7 +61,7 @@ class AddFolder extends Component {
                         className="AddFolder_form"
                         onSubmit={(e) => 
                             {if (this.state.touched) 
-                                {value.addFolder(this.handleFolderSubmit(e, newFolderName)) && this.confirmSubmit()}}}
+                                {value.addFolder(this.handleFolderSubmit(e, newFolderName))} this.props.history.push('/')}}
                             >
                         <label htmlFor="folderTitle">Folder Name</label>
                         <input 
@@ -74,6 +78,12 @@ class AddFolder extends Component {
                         {this.state.submitted && (
                             <FolderValidation message={this.confirmSubmit()}/>
                         )}
+                        <input 
+                            type="button" 
+                            value="Cancel" 
+                            className="Nav_Cancel_Btn"
+                            onClick={() => this.cancelButton()}
+                            />
                     </form>
                     </>
                 )

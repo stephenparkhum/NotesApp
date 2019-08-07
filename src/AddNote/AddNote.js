@@ -61,7 +61,12 @@ class AddNote extends Component {
         event.preventDefault();
         const postDate = Date.now();
         const folderId = this.folderId(contextValue, newNoteFolder);
-        return {name: newNoteName, content: newNoteContent, folderId: folderId, modified: postDate};
+        return (
+            {name: newNoteName, content: newNoteContent, folderId: folderId, modified: postDate});
+    }
+
+    cancelButton() {
+        return (this.props.history.push('/'));
     }
 
     render() { 
@@ -88,7 +93,7 @@ class AddNote extends Component {
                     <>
                     <form 
                         className="AddFolder_form"
-                        onSubmit={(e) => value.addNote(this.handleNoteSubmit(e, newNoteName, newNoteContent, newNoteFolder, value))}>
+                        onSubmit={(e) => {value.addNote(this.handleNoteSubmit(e, newNoteName, newNoteContent, newNoteFolder, value)); this.props.history.push('/')}}>
                         <label htmlFor="note-title">Note Title</label>
                         <input 
                             type="text" 
@@ -117,6 +122,12 @@ class AddNote extends Component {
                             {displayFolderOptions(value)}
                         </select>
                         <input type="submit" value="Save Note" />
+                        <input 
+                            type="button" 
+                            value="Cancel" 
+                            className="Nav_Cancel_Btn"
+                            onClick={() => this.cancelButton()}
+                            />
                     </form>
                     </>
                 )
