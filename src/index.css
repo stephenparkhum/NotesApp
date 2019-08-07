@@ -34,3 +34,18 @@ i {
   font-size: 15px;
   padding: 5px;
 }
+
+.Nav_Cancel_Btn {
+  font-size: 15px;
+  width: 10%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Nav_Cancel_Btn:hover {
+  background: var(--links);
+  color: white;
+}

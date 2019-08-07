@@ -101,6 +101,7 @@ class AddNote extends Component {
                             id="note-title" 
                             placeholder="Note Title"
                             onChange={e => this.updateNoteName(e.target.value)}
+                            required
                             />
                         {this.state.noteNameTouched && (
                             <NoteValidation message={this.validateNoteName()}/>
@@ -111,13 +112,16 @@ class AddNote extends Component {
                             cols="50" 
                             name="note-content" 
                             id="note-content"
+                            required
                             onChange={e => this.updateNoteContent(e.target.value)}></textarea>
+                
                         {this.state.noteContentTouched && (
                             <NoteValidation message={this.validateNoteContent()}/>
                         )}    
                         <label htmlFor="folder-select">Select Folder</label>
                         <select 
                             id="folder-select"
+                            required
                             onChange={e => this.updateNoteFolder(e.target.value)}>
                             {displayFolderOptions(value)}
                         </select>

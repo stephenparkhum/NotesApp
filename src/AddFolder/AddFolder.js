@@ -68,8 +68,9 @@ class AddFolder extends Component {
                             type="text" 
                             name="folderTitle" 
                             id="folderTitle" 
-                            placeholder="Note Title"
+                            placeholder="Folder Title"
                             onChange={e => this.updateFolderName(e.target.value)}
+                            required
                             />
                         {this.state.touched && (
                             <FolderValidation message={this.validateFolderName()}/>
