@@ -28,6 +28,8 @@ class AddFolder extends Component {
 
     handleFolderSubmit(event, newFolderName) {
         event.preventDefault();
+        this.setState({submitted: true});
+        this.confirmSubmit();
         return ({name: newFolderName});
     }
 
