@@ -51,7 +51,6 @@ class AddFolder extends Component {
     }
 
     render() { 
-
         const {newFolderName} = this.state;
 
         return ( 

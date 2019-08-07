@@ -18,6 +18,10 @@ class App extends Component {
     super(props);
     this.state = {
       folderPaths: ['/', 'folder/:folderId'],
+      message: 'Here is a test message',
+      showMessage: false,
+      folderAddSuccess: false,
+      noteAddSuccess: false,
     };
   }
 
@@ -37,7 +41,8 @@ class App extends Component {
 
   componentDidMount() {
     this.getNotesAndFolder();
-  } 
+    this.setState({noteAddSuccess: false, folderAddSuccess: false});
+  }
   
   displayNavigation() {
     const {folderPaths} = this.state;
@@ -132,6 +137,7 @@ class App extends Component {
     })
     .then(response => (response.json()))
     .then(data => this.getNotesAndFolder())
+    .then(this.setState({folderAddSuccess: true}))
   }
 
   addNote = (noteName, noteContent, noteFolder) => {
@@ -147,6 +153,7 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(data => this.getNotesAndFolder())
+    .then(this.setState({noteAddSuccess: true}))
   }
 
   render() { 
@@ -157,6 +164,9 @@ class App extends Component {
       deleteNote: this.handleDeleteNote, 
       addFolder: this.addFolder,
       addNote: this.addNote,
+      folderAddSuccess: this.state.folderAddSuccess,
+      noteAddSuccess: this.state.noteAddSuccess,
+      
     }
 
     return ( 

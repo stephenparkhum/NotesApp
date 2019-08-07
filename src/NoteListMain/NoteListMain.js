@@ -22,12 +22,39 @@ class NoteListMain extends Component {
                     ))
                 )
             }
-        }  
+        }
+        
+        const noteSuccessMessage = (value) => {
+            if (value.noteAddSuccess) {
+                return (
+                    <>
+                        <div className="SuccessMessage">
+                            <p>Your note has been added correctly!</p>
+                        </div>
+                    </>
+                )
+            }
+        }
+
+        const folderSuccessMessage = (value) => {
+            if (value.folderAddSuccess) {
+                return (
+                    <>
+                        <div className="SuccessMessage">
+                            <p>Your folder has been added correctly!</p>
+                        </div>
+                    </>
+                )
+            }
+        }
+        
         return ( 
             <FoldersContext.Consumer>
                 {(value) => {
                     return (
                         <>
+                            {noteSuccessMessage(value)}
+                            {folderSuccessMessage(value)}
                             <div className="NoteList__main">
                                 {displayNotes(value)}
                             </div>
