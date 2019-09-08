@@ -26,13 +26,13 @@ class App extends Component {
   }
 
   getNotesAndFolder() {
-    fetch('http://localhost:9090/folders', {
+    fetch('http://localhost:8000/api/folders', {
       method: 'GET'
     })
     .then(response => response.json())
     .then((data) => this.setState({folders: data}));
     
-    fetch('http://localhost:9090/notes', {
+    fetch('http://localhost:8000/api/notes', {
       method: 'GET'
     })
       .then(response => response.json())
@@ -126,24 +126,24 @@ class App extends Component {
 
   addFolder = (folderName) => {
     const newData = [];
-    newData.push({name: folderName})
-    const url = 'http://localhost:9090/folders'
+    newData.push({title: folderName})
+    const url = 'http://localhost:8000/api/folders'
     fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newData[0].name),
+      body: JSON.stringify(newData[0]),
     })
-    .then(response => (response.json()))
-    .then(data => this.getNotesAndFolder())
+    .then(response => response.json())
+    .then(data => {this.getNotesAndFolder()})
     .then(this.setState({folderAddSuccess: true}))
   }
 
   addNote = (noteName, noteContent, noteFolder) => {
     const newData = [];
     newData.push({name: noteName, content: noteContent, folderId: noteFolder})
-    const url = 'http://localhost:9090/notes'
+    const url = 'http://localhost:8000/api/notes'
     fetch(url, {
       method: 'POST',
       headers: {

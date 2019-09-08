@@ -12,7 +12,7 @@ class NoteListNav extends Component {
                 return (
                     folders.map((folder) => (
                         <NavLink to={`/folder/${folder.id}`} key={folder.id + 1} activeClassName="NoteListNav__active">
-                        <button key={folder.id}>{folder.name}</button>
+                        <button key={folder.id}>{folder.title}</button>
                         </NavLink>
                         
                     ))

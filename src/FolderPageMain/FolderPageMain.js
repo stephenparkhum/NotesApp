@@ -22,11 +22,11 @@ class FolderPageMain extends Component {
                 return (
                     <div>
                         {value.notes.map((note) => {
-                            if (note.folderId === folderId) {
+                            if (note.folder_Id === folderId) {
                                 return (
                                     <div className="NoteList__note" key={note.id + '_div'}>
                                     <Link to={`/note/${note.id}`}>
-                                        <h2 key={note.id + '_h2'}>{note.name}</h2>
+                                        <h2 key={note.id + '_h2'}>{note.title}</h2>
                                     </Link>
                                         <p key={note.id + '_p'}><small>{format(note.modified,' Do MMM YYYY')}</small></p>
                                     </div>

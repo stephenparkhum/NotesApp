@@ -19,7 +19,7 @@ class NotePageMain extends Component {
         e.preventDefault()
         const noteId = this.props.match.params.noteId
     
-        fetch(`http://localhost:9090/notes/${noteId}`, {
+        fetch(`http://localhost:8000/notes/${noteId}`, {
           method: 'DELETE',
           headers: {
             'content-type': 'application/json'
@@ -46,21 +46,19 @@ class NotePageMain extends Component {
     render() { 
         const displayActiveNote = (notes) => {
             const noteId = this.props.note;
+            const currentNote = notes.notes.filter(note => note.id == noteId);
             if (notes.notes !== undefined) {
-               for (let i = 0; i < notes.notes.length; i++) {
-                   if (notes.notes[i].id === noteId) {
-                       return (
-                           <div className="NotePageMain__display">
-                            <h1>{notes.notes[i].name}</h1>
-                           <p>{notes.notes[i].content}</p>
-                           <p className="NotePageMain__mod_date"><small>{format(notes.notes[i].modified, 'Do MMM YYYY')}</small></p>
-                           <Link to='/'><button className="back_button">{`< Back`}</button></Link>                       
-                           <button className="NotePageMain__delete-btn" onClick={this.handleClickDelete}><i className="fas fa-trash"></i></button>
-                           </div>
-                           
-                       )
-                   }
-               }
+              return (
+                <div className="NotePageMain__display">
+                   <h1>{currentNote[0].title}</h1>
+                   <p>{currentNote[0].content}</p>
+                   <p className="NotePageMain__mod_date"><small>{format(currentNote[0].modified, 'Do MMM YYYY')}</small></p>
+                   <Link to='/'><button className="back_button">{`< Back`}</button></Link>                       
+                   <button className="NotePageMain__delete-btn" onClick={this.handleClickDelete}><i className="fas fa-trash"></i></button>
+                </div>
+              )
+             
+
             }
         }
 

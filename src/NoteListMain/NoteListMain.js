@@ -14,7 +14,7 @@ class NoteListMain extends Component {
                     notes.notes.map((item) => (
                         <div className="NoteList__note" key={item.id + '_div'}>
                             <Link to={`/note/${item.id}`}>
-                                <h2 key={item.id + '_h2'}>{item.name}</h2>
+                                <h2 key={item.id + '_h2'}>{item.title}</h2>
                             </Link>
                             <p key={item.id + '_p'}><small>{format(item.modified,' Do MMM YYYY')}</small></p>
                         </div>

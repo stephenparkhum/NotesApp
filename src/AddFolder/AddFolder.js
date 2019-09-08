@@ -30,7 +30,7 @@ class AddFolder extends Component {
         event.preventDefault();
         this.setState({submitted: true});
         this.confirmSubmit();
-        return ({name: newFolderName});
+        return (newFolderName);
     }
 
     validateFolderName() {
@@ -64,11 +64,11 @@ class AddFolder extends Component {
                             {if (this.state.touched) 
                                 {value.addFolder(this.handleFolderSubmit(e, newFolderName))} this.props.history.push('/')}}
                             >
-                        <label htmlFor="folderTitle">Folder Name</label>
+                        <label htmlFor="title">Folder Name</label>
                         <input 
                             type="text" 
-                            name="folderTitle" 
-                            id="folderTitle" 
+                            name="title" 
+                            id="title" 
                             placeholder="Folder Title"
                             onChange={e => this.updateFolderName(e.target.value)}
                             required
