@@ -18,24 +18,24 @@ class FolderPageMain extends Component {
     render() { 
         const displayFolderNotes = (value) => {
             const folderId = this.props.folderId;
+            console.log(value.notes)
             if (value.notes && value.folders !== undefined) {
                 return (
                     <div>
                         {value.notes.map((note) => {
-                            if (note.folder_Id === folderId) {
+                            if (note.folder_id == folderId) {
                                 return (
                                     <div className="NoteList__note" key={note.id + '_div'}>
                                     <Link to={`/note/${note.id}`}>
-                                        <h2 key={note.id + '_h2'}>{note.title}</h2>
+                                        <h2 key={note.id + '_title'}>{note.title}</h2>
                                     </Link>
-                                        <p key={note.id + '_p'}><small>{format(note.modified,' Do MMM YYYY')}</small></p>
+                                        <p key={note.id + '_content'}><small>{format(note.modified,' Do MMM YYYY')}</small></p>
                                     </div>
                                     )
                             }
                         })}
                     </div>
                 )
-                
             }
         };
         return ( 

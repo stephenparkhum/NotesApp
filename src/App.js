@@ -27,13 +27,13 @@ class App extends Component {
   }
 
   getNotesAndFolder() {
-    fetch('http://localhost:8000/api/folders', {
+    fetch('https://murmuring-taiga-90020.herokuapp.com/api/folders', {
       method: 'GET'
     })
     .then(response => response.json())
     .then((data) => this.setState({folders: data}));
     
-    fetch('http://localhost:8000/api/notes', {
+    fetch('https://murmuring-taiga-90020.herokuapp.com/api/notes', {
       method: 'GET'
     })
       .then(response => response.json())
@@ -128,7 +128,7 @@ class App extends Component {
   addFolder = (folderName) => {
     const newData = [];
     newData.push({title: folderName})
-    const url = 'http://localhost:8000/api/folders'
+    const url = 'https://murmuring-taiga-90020.herokuapp.com/api/folders'
     fetch(url, {
       method: 'POST',
       headers: {
@@ -144,7 +144,7 @@ class App extends Component {
   addNote = (noteName, noteContent, noteFolder) => {
     const newData = [];
     newData.push({title: noteName, content: noteContent, folderId: noteFolder})
-    const url = 'http://localhost:8000/api/notes'
+    const url = 'https://murmuring-taiga-90020.herokuapp.com/api/notes'
     fetch(url, {
       method: 'POST',
       headers: {
