@@ -142,17 +142,17 @@ class App extends Component {
 
   addNote = (noteName, noteContent, noteFolder) => {
     const newData = [];
-    newData.push({name: noteName, content: noteContent, folderId: noteFolder})
+    newData.push({title: noteName, content: noteContent, folderId: noteFolder})
     const url = 'http://localhost:8000/api/notes'
     fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newData[0].name, newData[0].noteContent, newData[0].folderId),
+      body: JSON.stringify(newData[0]),
     })
     .then(response => response.json())
-    .then(data => this.getNotesAndFolder())
+    .then(data => {this.getNotesAndFolder(); console.log(data)})
     .then(this.setState({noteAddSuccess: true}))
   }
 

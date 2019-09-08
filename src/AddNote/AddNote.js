@@ -35,8 +35,8 @@ class AddNote extends Component {
 
     folderId(value, newNoteFolder) {
         for (let i = 0; i < value.folders.length; i++) {
-            if (value.folders[i].name === newNoteFolder) {
-                return value.folders[i].id;
+            if (value.folders[i].title === newNoteFolder) {
+                return (value.folders[i].id);
             }
         }
     }
@@ -62,7 +62,7 @@ class AddNote extends Component {
         const postDate = Date.now();
         const folderId = this.folderId(contextValue, newNoteFolder);
         return (
-            {name: newNoteName, content: newNoteContent, folderId: folderId, modified: postDate});
+            {title: newNoteName, content: newNoteContent, folder_id: folderId, modified: postDate});
     }
 
     cancelButton() {
@@ -76,8 +76,7 @@ class AddNote extends Component {
                 return (
                     value.folders.map((option) => (
                         <>  
-                            <option key={option.id}>{option.name}</option>
-    
+                            <option key={option.folder_id}>{option.title}</option>
                         </>
                     ))
                 )
@@ -94,11 +93,11 @@ class AddNote extends Component {
                     <form 
                         className="AddFolder_form"
                         onSubmit={(e) => {value.addNote(this.handleNoteSubmit(e, newNoteName, newNoteContent, newNoteFolder, value)); this.props.history.push('/')}}>
-                        <label htmlFor="note-title">Note Title</label>
+                        <label htmlFor="title">Note Title</label>
                         <input 
                             type="text" 
-                            name="note-title" 
-                            id="note-title" 
+                            name="title" 
+                            id="title" 
                             placeholder="Note Title"
                             onChange={e => this.updateNoteName(e.target.value)}
                             required
@@ -106,12 +105,12 @@ class AddNote extends Component {
                         {this.state.noteNameTouched && (
                             <NoteValidation message={this.validateNoteName()}/>
                         )}               
-                        <label htmlFor="note-title">Note Content</label>
+                        <label htmlFor="content">Note Content</label>
                         <textarea 
                             rows="4" 
                             cols="50" 
-                            name="note-content" 
-                            id="note-content"
+                            name="content" 
+                            id="content"
                             required
                             onChange={e => this.updateNoteContent(e.target.value)}></textarea>
                 
