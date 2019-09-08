@@ -10,6 +10,7 @@ import FolderPageMain from './FolderPageMain/FolderPageMain';
 import FoldersContext from './FoldersContext';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
+import {format} from 'date-fns'
 
 class App extends Component {
   static contextType = FoldersContext;
@@ -149,7 +150,12 @@ class App extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newData[0]),
+      body: JSON.stringify({
+        title: newData[0].title.title,
+        content: newData[0].title.content,
+        modified: format(Date.now(), 'YYYY/MM/DD HH:mm:ss'),
+        folder_id: newData[0].title.folder_id,
+      }),
     })
     .then(response => response.json())
     .then(data => {this.getNotesAndFolder(); console.log(data)})

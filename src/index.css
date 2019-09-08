@@ -37,7 +37,7 @@ i {
 
 .Nav_Cancel_Btn {
   font-size: 15px;
-  width: 10%;
+  width: 20%;
   padding: 10px;
   border-radius: 10px;
   margin-top: 20px;
@@ -48,6 +48,7 @@ i {
 .Nav_Cancel_Btn:hover {
   background: var(--links);
   color: white;
+  cursor: pointer;
 }
 
 .SuccessMessage {

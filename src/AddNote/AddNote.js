@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AddNote.css';
 import FoldersContext from '../FoldersContext';
 import NoteValidation from './NoteValidation';
+import {format} from 'date-fns'
 
 class AddNote extends Component {
     static contextType = FoldersContext; 
@@ -18,7 +19,8 @@ class AddNote extends Component {
         newNoteContent: '',
         noteContentTouched: false,
         newNoteFolder: '',
-        noteFolderTouched: false
+        noteFolderTouched: false,
+        newNoteFull: {}
     }
 
     updateNoteName(name) {
@@ -59,10 +61,10 @@ class AddNote extends Component {
 
     handleNoteSubmit(event, newNoteName, newNoteContent, newNoteFolder, contextValue) {
         event.preventDefault();
-        const postDate = Date.now();
+        const postDate = format(Date.now(), 'YYYY/mm/dd HH:mm:ss');
         const folderId = this.folderId(contextValue, newNoteFolder);
-        return (
-            {title: newNoteName, content: newNoteContent, folder_id: folderId, modified: postDate});
+        const newNote = {title: newNoteName, content: newNoteContent, folder_id: folderId, modified: postDate};
+        return (newNote);
     }
 
     cancelButton() {
