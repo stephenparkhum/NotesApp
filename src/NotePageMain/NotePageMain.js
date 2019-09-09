@@ -26,11 +26,11 @@ class NotePageMain extends Component {
           },
         })
           .then(res => {
-            if (!res.ok)
-              return res.json().then(e => Promise.reject(e))
-            return res.json()
+            if (!res.ok) {
+              return res.json()
+            }
           })
-          .then(() => {
+          .then((res) => {
             this.context.deleteNote(noteId)
             this.handleDeleteNote(noteId)
           })
