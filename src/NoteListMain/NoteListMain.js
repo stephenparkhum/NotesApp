@@ -29,7 +29,7 @@ class NoteListMain extends Component {
                 return (
                     <>
                         <div className="SuccessMessage">
-                            <p>Your note has been added correctly!</p>
+                            <p>Your note has been added successfully!</p>
                         </div>
                     </>
                 )
@@ -41,7 +41,7 @@ class NoteListMain extends Component {
                 return (
                     <>
                         <div className="SuccessMessage">
-                            <p>Your folder has been added correctly!</p>
+                            <p>Your folder has been added successfully!</p>
                         </div>
                     </>
                 )
@@ -70,11 +70,3 @@ class NoteListMain extends Component {
 }
  
 export default NoteListMain;
-
-// export default function NoteListMain(this.context) {
-    
-
-//     return (
-        
-//     )
-// }
