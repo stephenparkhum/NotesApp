@@ -19,7 +19,7 @@ class NotePageMain extends Component {
         e.preventDefault()
         const noteId = this.props.match.params.noteId
     
-        fetch(`http://localhost:8000/notes/${noteId}`, {
+        fetch(`https://murmuring-taiga-90020.herokuapp.com/api/notes/${noteId}`, {
           method: 'DELETE',
           headers: {
             'content-type': 'application/json'
