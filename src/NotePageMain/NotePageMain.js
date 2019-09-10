@@ -35,12 +35,12 @@ class NotePageMain extends Component {
             this.handleDeleteNote(noteId)
           })
           .catch(error => {
-            console.error({ error })
+            return error;
           })
       }
 
-      handleDeleteNote = noteId => {
-        this.props.history.push(`/`)
+    handleDeleteNote = noteId => {
+      this.props.history.push(`/`)
     }
 
     render() { 
