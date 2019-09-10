@@ -10,10 +10,13 @@ const FoldersContext = React.createContext({
     deleteNote: () => {},
     addFolder: () => {},
     addNote: () => {},
+    getNotesAndFolder: () => {},
     folderAddSuccess: false,
     folderSuccessMessage: 'Your new folder has been added!',
     noteAddSuccess: false,
     noteSuccessMessage: 'Your note has been added!',
+    noteDeleteSuccess: false,
+    noteDeleteMessage: `Your note has been deleted!`
 });
 
 export default FoldersContext;

@@ -15,7 +15,7 @@ class NotePageMain extends Component {
 
     static contextType = FoldersContext
 
-    handleClickDelete = e => {
+    handleClickDelete = (e, value) => {
         e.preventDefault()
         const noteId = this.props.match.params.noteId
     

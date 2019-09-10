@@ -23,6 +23,9 @@ class App extends Component {
       showMessage: false,
       folderAddSuccess: false,
       noteAddSuccess: false,
+      noteDeleteSuccess: false,
+      folders: [],
+      notes: []
     };
   }
 
@@ -42,7 +45,7 @@ class App extends Component {
 
   componentDidMount() {
     this.getNotesAndFolder();
-    this.setState({noteAddSuccess: false, folderAddSuccess: false});
+    this.setState({noteAddSuccess: false, folderAddSuccess: false, noteDeleteSuccess: false});
   }
   
   displayNavigation() {
@@ -121,7 +124,8 @@ class App extends Component {
 
   handleDeleteNote = noteId => {
     this.setState({
-      notes: this.state.notes.filter(note => note.id !== noteId)
+      notes: this.state.notes.filter(note => note.id !== noteId),
+      noteDeleteSuccess: true
     })
   } 
 
@@ -158,7 +162,7 @@ class App extends Component {
       }),
     })
     .then(response => response.json())
-    .then(data => {this.getNotesAndFolder(); console.log(data)})
+    .then(data => {this.getNotesAndFolder()})
     .then(this.setState({noteAddSuccess: true}))
   }
 
@@ -172,6 +176,7 @@ class App extends Component {
       addNote: this.addNote,
       folderAddSuccess: this.state.folderAddSuccess,
       noteAddSuccess: this.state.noteAddSuccess,
+      getNotesAndFolder: this.getNotesAndFolder
       
     }
 

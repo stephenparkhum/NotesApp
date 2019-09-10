@@ -18,9 +18,8 @@ class AddNote extends Component {
         noteNameTouched: false,
         newNoteContent: '',
         noteContentTouched: false,
-        newNoteFolder: '',
+        newNoteFolder: 'Music',
         noteFolderTouched: false,
-        newNoteFull: {}
     }
 
     updateNoteName(name) {
