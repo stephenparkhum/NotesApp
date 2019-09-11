@@ -47,6 +47,11 @@ class App extends Component {
     this.getNotesAndFolder();
     this.setState({noteAddSuccess: false, folderAddSuccess: false, noteDeleteSuccess: false});
   }
+
+  // removeDeletedNote(noteId) {
+  //   const newNoteList = this.state.notes.filter(note => note.id === noteId);
+  //   this.setState({notes: newNoteList});
+  // }
   
   displayNavigation() {
     const {folderPaths} = this.state;
@@ -122,11 +127,15 @@ class App extends Component {
     )
   }
 
-  handleDeleteNote = noteId => {
+  handleDeleteNote = (noteId, props) => {
+    let newNoteArr = this.state.notes.filter(note => note.id !== noteId)
     this.setState({
-      notes: this.state.notes.filter(note => note.id !== noteId),
+      notes: newNoteArr,
+      folderAddSuccess: false,
+      noteAddSuccess: false,
       noteDeleteSuccess: true
     })
+    props.history.go('/');
   } 
 
   addFolder = (folderName) => {
@@ -176,7 +185,8 @@ class App extends Component {
       addNote: this.addNote,
       folderAddSuccess: this.state.folderAddSuccess,
       noteAddSuccess: this.state.noteAddSuccess,
-      getNotesAndFolder: this.getNotesAndFolder
+      getNotesAndFolder: this.getNotesAndFolder,
+      removeDeletedNote: this.removeDeletedNote
       
     }
 

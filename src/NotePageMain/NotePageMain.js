@@ -15,6 +15,13 @@ class NotePageMain extends Component {
 
     static contextType = FoldersContext
 
+    deleteAndReload = (e, value) => {
+      this.handleClickDelete(e, value);
+      value.getNotesAndFolder(); 
+      setTimeout(this.deleteNoteRedirect(), 500)
+      
+    }
+
     handleClickDelete = (e, value) => {
         e.preventDefault()
         const noteId = this.props.match.params.noteId
@@ -31,15 +38,17 @@ class NotePageMain extends Component {
             }
           })
           .then((res) => {
-            this.context.deleteNote(noteId)
-            this.handleDeleteNote(noteId)
+            value.deleteNote(noteId, this.props)
+          })
+          .then(() => {
+            this.deleteNoteRedirect();
           })
           .catch(error => {
             return error;
           })
       }
 
-    handleDeleteNote = noteId => {
+    deleteNoteRedirect = () => {
       this.props.history.push(`/`)
     }
 
@@ -54,7 +63,7 @@ class NotePageMain extends Component {
                    <p>{currentNote[0].content}</p>
                    <p className="NotePageMain__mod_date"><small>{format(currentNote[0].modified, 'Do MMM YYYY')}</small></p>
                    <Link to='/'><button className="back_button">{`< Back`}</button></Link>                       
-                   <button className="NotePageMain__delete-btn" onClick={this.handleClickDelete}><i className="fas fa-trash"></i></button>
+                   <button className="NotePageMain__delete-btn" onClick={(e) => this.deleteAndReload(e, notes)}><i className="fas fa-trash"></i></button>
                 </div>
               )
              

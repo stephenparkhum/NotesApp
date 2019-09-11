@@ -47,6 +47,18 @@ class NoteListMain extends Component {
                 )
             }
         }
+
+        const noteDeleteSuccess = (value) => {
+            if (value.noteDeleteSuccess) {
+                return (
+                    <>
+                        <div className="SuccessMessage">
+                            <p>Your note has been deleted!</p>
+                        </div>
+                    </>
+                )
+            }
+        }
         
         return ( 
             <FoldersContext.Consumer>
@@ -55,6 +67,7 @@ class NoteListMain extends Component {
                         <>
                             {noteSuccessMessage(value)}
                             {folderSuccessMessage(value)}
+                            {noteDeleteSuccess(value)}
                             <div className="NoteList__main">
                                 {displayNotes(value)}
                             </div>
